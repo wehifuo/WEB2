@@ -10,8 +10,6 @@ function check_bulls_cows(guess, secret) {
     let bulls = 0;
     let cows = 0;
 
-    let indices = new Set()
-
     const secret_digit = secret.split('');
     const guess_digit = guess.split('');
 
@@ -19,7 +17,6 @@ function check_bulls_cows(guess, secret) {
     for (let i = 0; i < 4; i++) {
         if (guess_digit[i] === secret_digit[i]) {
             bulls++;
-            indices.add(i)
         }
         else if (guess_digit.includes(secret_digit[i])){
             cows++;
@@ -47,7 +44,6 @@ let OnSubmit = (event) => {
 
     let guess = digits_int.join(''); 
 
-    console.log('digits', digits_int);
     
     all_guess.push(guess)
     attempts++;
@@ -83,6 +79,7 @@ let OnSubmit = (event) => {
 
     g.innerHTML = ""
     let t = all_guess.length-10 < 0 ? 0 :all_guess.length-10
+    
     for (let i = all_guess.length-1; i >= t;i--){
         
         
@@ -95,5 +92,6 @@ let OnSubmit = (event) => {
     event.target.querySelectorAll('input[name="digit"]').forEach(input => input.value = '');
     event.target.querySelector('input[name="digit"]').focus();
 }
+
 
 document.getElementById('guess_form').addEventListener('submit', OnSubmit);
